@@ -2,6 +2,7 @@ import { HashRouter, Routes, Route } from 'react-router-dom'
 import { lazy, Suspense } from 'react'
 import Layout from '../components/layout/Layout'
 import SkeletonLoader from '../components/ui/SkeletonLoader'
+import ErrorBoundary from '../components/ui/ErrorBoundary'
 
 const Home          = lazy(() => import('../pages/Home'))
 const About         = lazy(() => import('../pages/About'))
@@ -16,21 +17,29 @@ const JoinVolunteer = lazy(() => import('../pages/JoinVolunteer'))
 
 const Fallback = () => <SkeletonLoader />
 
+const wrap = (Component) => (
+  <ErrorBoundary>
+    <Suspense fallback={<Fallback />}>
+      <Component />
+    </Suspense>
+  </ErrorBoundary>
+)
+
 export default function AppRouter() {
   return (
     <HashRouter>
       <Routes>
         <Route path="/" element={<Layout />}>
-          <Route index element={<Suspense fallback={<Fallback />}><Home /></Suspense>} />
-          <Route path="about" element={<Suspense fallback={<Fallback />}><About /></Suspense>} />
-          <Route path="events" element={<Suspense fallback={<Fallback />}><Events /></Suspense>} />
-          <Route path="events/:slug" element={<Suspense fallback={<Fallback />}><EventDetail /></Suspense>} />
-          <Route path="learning" element={<Suspense fallback={<Fallback />}><LearningHub /></Suspense>} />
-          <Route path="learning/:slug" element={<Suspense fallback={<Fallback />}><ArticleDetail /></Suspense>} />
-          <Route path="projects" element={<Suspense fallback={<Fallback />}><Projects /></Suspense>} />
-          <Route path="projects/:slug" element={<Suspense fallback={<Fallback />}><ProjectDetail /></Suspense>} />
-          <Route path="apps" element={<Suspense fallback={<Fallback />}><Apps /></Suspense>} />
-          <Route path="join" element={<Suspense fallback={<Fallback />}><JoinVolunteer /></Suspense>} />
+          <Route index element={wrap(Home)} />
+          <Route path="about" element={wrap(About)} />
+          <Route path="events" element={wrap(Events)} />
+          <Route path="events/:slug" element={wrap(EventDetail)} />
+          <Route path="learning" element={wrap(LearningHub)} />
+          <Route path="learning/:slug" element={wrap(ArticleDetail)} />
+          <Route path="projects" element={wrap(Projects)} />
+          <Route path="projects/:slug" element={wrap(ProjectDetail)} />
+          <Route path="apps" element={wrap(Apps)} />
+          <Route path="join" element={wrap(JoinVolunteer)} />
         </Route>
       </Routes>
     </HashRouter>
