@@ -1,0 +1,79 @@
+backend:
+  name: github
+  repo: amitkrtux/DesignHubIndiaWeb
+  branch: main
+  base_url: https://sveltia-cms-auth.amit-xasap.workers.dev
+
+publish_mode: editorial_workflow
+
+media_folder: "public/images/uploads"
+public_folder: "/DesignHubIndiaWeb/images/uploads"
+
+collections:
+  - name: events
+    label: Events
+    folder: content/events
+    create: true
+    slug: "{{year}}-{{month}}-{{day}}-{{slug}}"
+    format: frontmatter
+    fields:
+      - { label: Title,       name: title,       widget: string }
+      - { label: Description, name: description, widget: text }
+      - { label: Date,        name: date,        widget: datetime }
+      - { label: Type,        name: type,        widget: select, options: [online, offline] }
+      - { label: Status,      name: status,      widget: select, options: [upcoming, past] }
+      - { label: Location,    name: location,    widget: string,   required: false }
+      - { label: Speakers,    name: speakers,    widget: list,     required: false }
+      - { label: CTA Link,    name: cta_link,    widget: string,   required: false }
+      - { label: Image,       name: image,       widget: image,    required: false }
+      - { label: Tags,        name: tags,        widget: list,     required: false }
+      - { label: Body,        name: body,        widget: markdown, required: false }
+
+  - name: learning
+    label: Learning Hub
+    folder: content/learning
+    create: true
+    slug: "{{slug}}"
+    format: frontmatter
+    fields:
+      - { label: Title,       name: title,       widget: string }
+      - { label: Description, name: description, widget: text }
+      - { label: Date,        name: date,        widget: datetime }
+      - { label: Category,    name: category,    widget: select, options: [beginner, intermediate, advanced] }
+      - { label: Tags,        name: tags,        widget: list,     required: false }
+      - { label: Image,       name: image,       widget: image,    required: false }
+      - { label: Body,        name: body,        widget: markdown }
+
+  - name: projects
+    label: Projects
+    folder: content/projects
+    create: true
+    slug: "{{slug}}"
+    format: frontmatter
+    fields:
+      - { label: Title,        name: title,        widget: string }
+      - { label: Description,  name: description,  widget: text }
+      - { label: Date,         name: date,         widget: datetime }
+      - { label: Status,       name: status,       widget: select, options: [active, completed, paused] }
+      - { label: Goals,        name: goals,        widget: list,    required: false }
+      - { label: Contributors, name: contributors, widget: list,    required: false }
+      - { label: Join Link,    name: join_link,    widget: string,  required: false }
+      - { label: Tags,         name: tags,         widget: list,    required: false }
+      - { label: Image,        name: image,        widget: image,   required: false }
+      - { label: Body,         name: body,         widget: markdown }
+
+  - name: apps
+    label: Gamified Apps
+    folder: content/apps
+    create: true
+    slug: "{{slug}}"
+    format: frontmatter
+    fields:
+      - { label: Title,       name: title,       widget: string }
+      - { label: Description, name: description, widget: text }
+      - { label: Date,        name: date,        widget: datetime }
+      - { label: Skill Focus, name: skill_focus, widget: string }
+      - { label: Try Now URL, name: try_url,     widget: string }
+      - { label: Image,       name: image,       widget: image,    required: false }
+      - { label: Tags,        name: tags,        widget: list,     required: false }
+      - { label: Body,        name: body,        widget: markdown, required: false }

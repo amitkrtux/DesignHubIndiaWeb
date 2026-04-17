@@ -1,0 +1,2 @@
+import{r as e}from"./motion-DH_HLaVD.js";var t=e();function n({filters:e,active:n,onChange:r}){return(0,t.jsx)(`div`,{className:`flex gap-2 overflow-x-auto pb-1 scrollbar-none`,role:`group`,children:e.map(({label:e,value:i})=>(0,t.jsx)(`button`,{onClick:()=>r(i),"aria-pressed":n===i,className:`flex-shrink-0 px-4 py-1.5 rounded-full text-sm font-medium border transition-colors
+            ${n===i?`bg-accent border-accent text-white`:`border-surface-border text-slate-400 hover:text-slate-200 hover:border-slate-500`}`,children:e},i))})}export{n as t};
