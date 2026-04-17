@@ -1,11 +1,20 @@
-import matter from 'gray-matter'
+import yaml from 'js-yaml'
 
-// All markdown files are imported as raw strings at build time via Vite glob.
-// The { eager: true, query: '?raw' } combination reads them synchronously during bundling.
 const eventFiles    = import.meta.glob('/content/events/*.md',   { eager: true, query: '?raw', import: 'default' })
 const learningFiles = import.meta.glob('/content/learning/*.md', { eager: true, query: '?raw', import: 'default' })
 const projectFiles  = import.meta.glob('/content/projects/*.md', { eager: true, query: '?raw', import: 'default' })
 const appFiles      = import.meta.glob('/content/apps/*.md',     { eager: true, query: '?raw', import: 'default' })
+
+function parseFrontmatter(raw) {
+  const match = raw.match(/^---\r?\n([\s\S]*?)\r?\n---\r?\n?([\s\S]*)$/)
+  if (!match) return { data: {}, content: raw.trim() }
+  try {
+    const data = yaml.load(match[1]) || {}
+    return { data, content: match[2].trim() }
+  } catch {
+    return { data: {}, content: raw.trim() }
+  }
+}
 
 function slugFromPath(path) {
   return path.split('/').pop().replace(/\.md$/, '')
@@ -14,12 +23,8 @@ function slugFromPath(path) {
 function parseCollection(files) {
   return Object.entries(files)
     .map(([path, raw]) => {
-      const { data, content } = matter(raw)
-      return {
-        slug: slugFromPath(path),
-        content,
-        ...data,
-      }
+      const { data, content } = parseFrontmatter(raw)
+      return { slug: slugFromPath(path), content, ...data }
     })
     .sort((a, b) => new Date(b.date) - new Date(a.date))
 }
