@@ -1,0 +1,195 @@
+Build a production-ready, fully static website for "Design Hub India" that can be deployed on GitHub Pages. The site should use a modern React-based stack with a Git-based CMS (Decap CMS) for content management, without requiring any backend server.
+
+## 🌐 1. Core Objective
+
+Create a high-quality, design-first website that:
+- Showcases Design Hub India as a premium design community
+- Enables content updates without coding via CMS
+- Works entirely as a static site (GitHub Pages compatible)
+- Feels modern, smooth, and credible
+
+## 🧱 2. Tech Stack (Strict)
+
+- Framework: React (Vite preferred) OR Next.js with static export
+- Styling: Tailwind CSS
+- Animations: Framer Motion
+- CMS: Decap CMS (Git-based, no backend)
+- Content format: Markdown + frontmatter OR JSON
+- Deployment: GitHub Pages
+- Build Tool: Vite or Next build export
+
+## 🎨 3. Design System & Theme
+
+### Visual Direction:
+- Inspired by SAPUI5 (structured, grid-based, enterprise clarity)
+- Enhanced with modern SaaS feel (Linear, Stripe)
+
+### Theme:
+- Default: Dark Mode
+- Toggle: Light Mode
+- Persist theme using localStorage
+
+### UI Details:
+- Clean spacing system
+- Card-based layouts
+- Subtle shadows and depth
+- Accent color: muted blue/teal
+
+### Typography:
+- Inter or IBM Plex Sans
+
+## ✨ 4. Motion & Interaction
+
+- Use Framer Motion
+- Page transitions: fade + slight upward motion
+- Hover effects:
+  - Cards: slight scale + elevation
+  - Buttons: soft glow or color shift
+- Skeleton loaders for content
+- Avoid excessive or distracting animations
+
+## 🧭 5. Site Structure (Pages)
+
+### 🏠 Home
+- Hero section with strong messaging
+- Overview sections:
+  - Events
+  - Learning
+  - Projects/Initiatives
+  - Gamified Apps
+- Featured highlights
+- Call-to-action (Join Community)
+
+### 🧩 About
+- Vision, mission, purpose
+- Who should join
+- Community overview
+
+### 📅 Events
+- List of events (internal + external)
+- Filters:
+  - Upcoming / Past
+  - Online / Offline
+- Event detail page:
+  - Title
+  - Description
+  - Date/time
+  - Speakers
+  - CTA link
+
+### 📚 Learning Hub
+- Content types:
+  - Articles
+  - Guides
+  - Training materials
+- Categorization:
+  - Beginner / Intermediate / Advanced
+- Tag system
+
+### 🚀 Projects / Initiatives
+- List of active initiatives
+- Each project page:
+  - Overview
+  - Goals
+  - Contributors
+  - Join CTA
+
+### 🎮 Gamified Learning Apps
+- Showcase interactive tools (static links or embedded tools)
+- Each item:
+  - Description
+  - Skill focus
+  - CTA ("Try Now")
+
+### 🙌 Join as Volunteer
+- Form fields:
+  - Name
+  - Email
+  - Area of interest
+  - Skills
+- Use static form handling:
+  - Formspree / Netlify Forms alternative
+- Show success state after submission
+
+## 🧩 6. CMS Integration (Decap CMS)
+
+Set up Decap CMS at `/admin` route.
+
+### CMS Capabilities:
+- Add/edit/delete:
+  - Events
+  - Learning content
+  - Projects
+  - Gamified apps entries
+
+### Content Storage:
+- Store content inside `/content` directory:
+  - /content/events/*.md
+  - /content/learning/*.md
+  - /content/projects/*.md
+  - /content/apps/*.md
+
+### Each Markdown file should include:
+- title
+- description
+- date
+- tags
+- image (optional)
+- category
+
+### CMS Config:
+- Configure Decap CMS to connect with GitHub repo
+- Enable editorial workflow (draft → publish)
+- Provide structured fields for each collection
+
+## ⚙️ 7. Data Handling
+
+- Fetch content statically at build time
+- Use local file parsing (Markdown → JSON)
+- No runtime API calls required
+
+## 🧱 8. Components
+
+Build reusable components:
+- Navbar (with theme toggle)
+- Footer
+- Card components
+- Tag badges
+- Filters
+- CTA buttons
+- Form components
+
+## ⚡ 9. Performance
+
+- Optimize images
+- Lazy load heavy components
+- Ensure fast load times
+- Lighthouse score target: 90+
+
+## 📱 10. Responsiveness
+
+- Fully responsive
+- Mobile-first approach
+- Clean stacking of cards and sections
+
+## ♿ 11. Accessibility
+
+- Proper contrast in dark mode
+- Semantic HTML
+- Keyboard navigability
+
+## 🚀 12. Deployment
+
+- Configure for GitHub Pages deployment
+- Include build scripts
+- Optional: GitHub Actions for auto-deploy on commit
+
+## 📦 13. Deliverables
+
+- Full codebase
+- CMS fully functional via /admin
+- Content structure defined
+- Theming system implemented
+- Deployment-ready setup
+
+Focus on creating a visually polished, smooth, and minimal experience that reflects a credible, forward-thinking design community.
